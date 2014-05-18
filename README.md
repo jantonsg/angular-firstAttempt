@@ -1,4 +1,4 @@
 angular-firstAttempt
 ====================
 
-Testing AngularJS
+Testing AngularJS and Github
