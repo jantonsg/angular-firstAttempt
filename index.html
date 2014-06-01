@@ -7,18 +7,44 @@
 </head>
 <body>
 	<div id='content' ng-app='firstAttemptApp' ng-controller='MainController'>
+
+		<!-- Using this tutorial: http://www.revillweb.com/tutorials/angularjs-in-30-minutes-angularjs-tutorial/ -->
+		<h1> Ejemplo 1 - Binding</h1>
 		
+		<input type="text" name="username" ng-model="username" placeholder="username"/>
+		<button type="button" ng-click='submit()'>Submit</button>
+		<br/>
 		<div ng-show="username">
 			{{mensaje}}
 		</div>
-		<br/>
 
-		<input type="text" name="username" ng-model="username" placeholder="username"/>
-		{{username}}
+		<h1> Ejemplo 2 - Binding </h1>
 
-		<br/>
+		<select ng-model='selectedPerson' ng-options="person.name for person in people"></select>
+		
+		<select ng-model='selectedGenre'>
+			<option ng-repeat="musicLabel in people[selectedPerson.id].music">{{musicLabel}}</option>
+		</select>
 
-		<button type="button" ng-click='submit()'>Submit</button>
+		<h1> Ejemplo 3 - Filtering</h1>
+
+		<input type="text" name="searchBox" ng-model="searchBox" placeholder="username"/>
+		<br/><br/>
+
+		<div ng-repeat="person in people | filter:searchBox">
+			<li>{{person.id}} - {{person.name}}</li>
+		</div>
+
+		<h1> Ejemplo 4- Show and hide </h1>
+
+		<input type='text' ng-model='searchText' />
+        <ul>
+            <li ng-repeat='person in people | filter:searchText' ng-show='person.live == true'>#{{person.id}} {{person.name}}</li>
+        </ul>
+        <ul>
+            <li ng-repeat='person in people | filter:searchText' ng-hide='person.live == false'>#{{person.id}} {{person.name}}</li>
+        </ul>
+
 	
 	</div>
 
